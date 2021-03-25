@@ -1,0 +1,27 @@
+{
+  "name": "file-upload",
+  "author": {
+    "name": "joker",
+    "email": "tbw19990315@gmail.com",
+    "url": "https://taobowen.cn"
+  },
+  "version": "1.0.0",
+  "description": "A toolkit for uploading files",
+  "keywords": [
+    "file"
+  ],
+  "repository": "github:File_upload",
+  "main": "src/index.js",
+  "private": false,
+  "scripts": {
+    "start": "npm run dev",
+    "test": "npm run unit"
+  },
+  "engines": {
+    "node": ">= 12.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "dependencies": {
+    "typescript": "^4.2.3"
+  }
+}
