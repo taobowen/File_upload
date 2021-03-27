@@ -1,4 +1,4 @@
-export interface fileConfig {
+interface fileConfig {
     useConfig: Boolean, // 是否使用此文件中的配置
     basePath: string,    // 本地根路径
     publishedPath: string,    // 要上传的路径
@@ -12,4 +12,8 @@ export interface fileConfig {
         username: string,
         password: string
     }
+}
+
+interface fileUp {
+    config: fileConfig
 }

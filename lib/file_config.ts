@@ -1,9 +1,13 @@
-import {fileConfig} from './interface/config';
+/*
+ * 通过命令行使用时的配置文件
+ */
+
+// import {fileConfig} from './interface/config';
 
 let config: fileConfig =  {
-    useConfig: false,
-    basePath: '/',
-    publishedPath: '/',
+    useConfig: true,
+    basePath: 'src',
+    publishedPath: '/fefefef/fefefec',
     protocol: 'sftp',
     remotePath: '/',
     uploadLimit: 1,
