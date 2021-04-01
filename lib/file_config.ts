@@ -2,9 +2,7 @@
  * 通过命令行使用时的配置文件
  */
 
-// import {fileConfig} from './interface/config';
-
-let config: fileConfig =  {
+export const config: fileConfig = {
     useConfig: true,
     basePath: 'src',
     publishedPath: '/fefefef/fefefec',
@@ -19,5 +17,3 @@ let config: fileConfig =  {
         password: ''
     }
 }
-
-export default config;

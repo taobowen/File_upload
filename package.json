@@ -21,7 +21,7 @@
   "scripts": {
     "test": "node src/index.ts",
     "start": "node dist/index.js",
-    "build": "tsc"
+    "build": "tsc --build"
   },
   "engines": {
     "node": ">= 12.0.0",
@@ -36,6 +36,7 @@
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.36",
     "babel-cli": "^6.26.0",
+    "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-env": "^1.7.0",
     "es-checker": "^1.4.2",
     "jsdoc": "^3.6.6"
