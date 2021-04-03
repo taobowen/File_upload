@@ -4,10 +4,10 @@
 
 export const config: fileConfig = {
     useConfig: true,
-    basePath: 'src',
-    publishedPath: '/fefefef/fefefec',
+    basePath: 'test',
+    publishedPath: './test',
     protocol: 'sftp',
-    remotePath: '/',
+    remotePath: 'test',
     uploadLimit: 1,
     retryTimes: 3,
     connectServer: {
