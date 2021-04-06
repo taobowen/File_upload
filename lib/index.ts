@@ -15,31 +15,17 @@ if (config.useConfig) {
     }
 
     let mergedPath = path.resolve(config.basePath, config.publishedPath),
-    mergedMes = fs.lstatSync(mergedPath);
-    console.log(mergedPath);
+        mergedMes = fs.lstatSync(mergedPath);
 
     if (mergedMes.isFile()) {
-        // 如果上传的是文件
-        console.log('文件');
-        fs.readFile(mergedPath, 'utf8', (err, data) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            console.log(data);
-        });
 
+        // 如果上传的是文件
+        console.log(`开始上传${mergedPath}下的文件`);
         put(mergedPath, config);
     } else if (mergedMes.isDirectory()) {
+
         // 如果上传的是文件夹
-        console.log('文件夹');
-        fs.readdir(mergedPath, (err, data) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-            console.log(data);
-        });
+        console.log(`开始上传${mergedPath}下的文件夹`);
         put(mergedPath, config);
     }
 }

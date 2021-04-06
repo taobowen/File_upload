@@ -5,15 +5,15 @@
 export const config: fileConfig = {
     useConfig: true,
     basePath: 'test',
-    publishedPath: './test',
+    publishedPath: './test/test/..',
     protocol: 'sftp',
     remotePath: 'test',
     uploadLimit: 1,
     retryTimes: 3,
     connectServer: {
-        host: '',
+        host: '10.212.21.89',
         port: 80,
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'admin123'
     }
 }
