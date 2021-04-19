@@ -5,7 +5,7 @@
 export const config: fileConfig = {
     useConfig: true,
     basePath: 'test',
-    publishedPath: './test/test/..',
+    publishedPath: ['./test/innerTest','./test','./'],
     protocol: 'sftp',
     remotePath: 'test',
     uploadLimit: 1,

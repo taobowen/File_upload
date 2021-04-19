@@ -1,7 +1,7 @@
 interface fileConfig {
     useConfig: Boolean, // 是否使用此文件中的配置
     basePath: string,    // 本地根路径
-    publishedPath: string,    // 要上传的路径
+    publishedPath: string [],    // 要上传的路径，数组的长度代表并行上传的个数
     protocol: 'sftp' | 'ftp',    // 协议
     remotePath: string,    // 远程路径
     uploadLimit?: number,    // 并发数

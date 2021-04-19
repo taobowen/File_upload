@@ -1,13 +1,13 @@
 let Client = require('ssh2-sftp-client');
 
-export default function put (localPath: String, config: fileConfig){
+export default async function put (localPath: String, config: fileConfig){
     let sftp = new Client(),
         {host, port, username, password} = config.connectServer,
         maxPutNum = config.retryTimes ? config.retryTimes : 1,
         retryTime = 1,
         isEnd = false;
 
-    function sftpPut () {
+    let sftpPut = async () => {
         if (isEnd) {
             return;
         }
@@ -35,5 +35,5 @@ export default function put (localPath: String, config: fileConfig){
         });
     }
 
-    sftpPut();
+    await sftpPut();
 }

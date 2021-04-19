@@ -14,18 +14,36 @@ if (config.useConfig) {
         throw checkMessage;
     }
 
-    let mergedPath = path.resolve(config.basePath, config.publishedPath),
-        mergedMes = fs.lstatSync(mergedPath);
+    let batchHandlePath = [],
+        handlePath = (pathItem) => {
+            return new Promise(() => {
+                let mergedPath = path.resolve(config.basePath, pathItem),
+                mergedMes = fs.lstatSync(mergedPath);
+    
+                if (mergedMes.isFile()) {
+    
+                    // 如果上传的是文件
+                    console.log(`开始上传${mergedPath}下的文件`);
+                    put(mergedPath, config);
+                } else if (mergedMes.isDirectory()) {
+    
+                    // 如果上传的是文件夹
+                    console.log(`开始上传${mergedPath}下的文件夹`);
+                    put(mergedPath, config);
+                }
+                return true;
+            }) 
+        };
 
-    if (mergedMes.isFile()) {
+    config.publishedPath.forEach (pathItem => {
+        batchHandlePath.push(handlePath(pathItem));
+    })
 
-        // 如果上传的是文件
-        console.log(`开始上传${mergedPath}下的文件`);
-        put(mergedPath, config);
-    } else if (mergedMes.isDirectory()) {
 
-        // 如果上传的是文件夹
-        console.log(`开始上传${mergedPath}下的文件夹`);
-        put(mergedPath, config);
-    }
+    Promise.all(batchHandlePath).then(() => {
+        console.log('上传成功')
+    }).catch(e => {
+        console.log('上传失败');
+        console.error(e);
+    })
 }
