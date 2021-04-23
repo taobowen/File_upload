@@ -1,7 +1,7 @@
 const fs = require ('fs');
 const path = require ('path');
 
-export default function checkInterface (config: fileConfig): String | Boolean {
+export default function checkInterface (config: FileConfig): String | Boolean {
     let {basePath, remotePath} = config,
         baseMes = fs.lstatSync(basePath),
         remoteMes = fs.lstatSync(remotePath);

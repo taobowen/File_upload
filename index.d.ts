@@ -1,4 +1,4 @@
-interface fileConfig {
+interface FileConfig {
     useConfig: Boolean, // 是否使用此文件中的配置
     basePath: string,    // 本地根路径
     publishedPath: string [],    // 要上传的路径，数组的长度代表并行上传的个数
@@ -11,9 +11,14 @@ interface fileConfig {
         port: number,
         username: string,
         password: string
-    }
+    },
+    debugger ?: Boolean
 }
 
-interface fileUp {
-    config: fileConfig
+interface FileUp {
+    config: FileConfig
+}
+
+interface EventMap {
+   [propName: string] : Function | null
 }

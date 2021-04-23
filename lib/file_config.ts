@@ -2,7 +2,7 @@
  * 通过命令行使用时的配置文件
  */
 
-export const config: fileConfig = {
+export const config: FileConfig = {
     useConfig: true,
     basePath: 'test',
     publishedPath: ['./test/innerTest','./test','./'],
