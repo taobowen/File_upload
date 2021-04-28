@@ -11,8 +11,7 @@ interface FileConfig {
         port: number,
         username: string,
         password: string
-    },
-    debugger ?: Boolean
+    }
 }
 
 interface FileUp {

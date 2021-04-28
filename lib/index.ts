@@ -8,6 +8,5 @@ if (config.useConfig) {
     handleFileUpload (config);
 }
 
-export {
-    tFile
-}
+export default tFile;
+
