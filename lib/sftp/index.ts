@@ -1,3 +1,4 @@
+import log from '../log/index';
 let Client = require('ssh2-sftp-client');
 
 export default async function put (localPath: String, config: FileConfig){
@@ -17,20 +18,18 @@ export default async function put (localPath: String, config: FileConfig){
             username,
             password
         }).then(() => { 
-            return sftp.put(localPath, config.remotePath);
+            sftp.put(localPath, config.remotePath);
         }).then(() => {
-            console.log("上传完成");
+            log("上传完成");
             isEnd = true;
-            return;
         }).catch((err) => {
             if (retryTime <= maxPutNum) {
-                console.log(`开始第${retryTime}次重试...`);
+                log(`开始第${retryTime}次重试...`);
                 retryTime ++;
                 sftpPut();
             } else {
-                console.error(err);
+                log(err);
                 isEnd = true;
-                return;
             }
         });
     }

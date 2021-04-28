@@ -20,8 +20,9 @@
   "private": false,
   "scripts": {
     "test": "node src/index.ts",
-    "start": "node dist/index.js",
-    "build": "tsc --build"
+    "start": "set DEBUG=production && node dist/index.js",
+    "build": "tsc --build",
+    "dev": "set DEBUG=development && node dist/index.js"
   },
   "engines": {
     "node": ">= 12.0.0",
@@ -39,7 +40,9 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-add-module-exports": "^1.0.4",
     "babel-preset-env": "^1.7.0",
+    "debug": "^4.3.1",
     "es-checker": "^1.4.2",
+    "jest": "^26.6.3",
     "jsdoc": "^3.6.6"
   }
 }

@@ -10,14 +10,14 @@ export default function checkInterface (config: FileConfig): String | Boolean {
     }
 
     if(!remoteMes.isDirectory()) {
-        return '远程路径格式有误';
+        throw '远程路径格式有误';
     }
 
     for (let pathIndex in config.publishedPath) {
         let mergedPath = path.resolve(config.basePath, config.publishedPath[pathIndex]),
             mergedMes = fs.lstatSync(mergedPath);
         if (!mergedMes.isFile() && !mergedMes.isDirectory()) {
-            return '上传路径格式有误'
+            throw '上传路径格式有误'
         }
 
         return true;
