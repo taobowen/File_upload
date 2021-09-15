@@ -3,17 +3,14 @@
  */
 
 export const config: FileConfig = {
-    useConfig: true,
     basePath: 'test',
-    publishedPath: ['./test/innerTest','./test','./'],
-    protocol: 'sftp',
+    publishedPath: './test_one/innerTest',
     remotePath: 'test',
-    uploadLimit: 1,
     retryTimes: 3,
     connectServer: {
-        host: '10.212.21.89',
-        port: 80,
-        username: 'admin',
-        password: 'admin123'
+        host: '106.75.101.212',
+        port: 22,
+        username: 'ubuntu',
+        password: 't123456789'
     }
 }

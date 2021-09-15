@@ -14,8 +14,7 @@ export default function handleFileUpload (config: FileConfig, eventBus: any = nu
     }
     
 
-    let batchHandlePath = [],
-        handlePath = (pathItem) => {
+    let handlePath = (pathItem) => {
             return new Promise(() => {
                 let mergedPath = path.resolve(config.basePath, pathItem),
                 mergedMes = fs.lstatSync(mergedPath);
@@ -23,24 +22,19 @@ export default function handleFileUpload (config: FileConfig, eventBus: any = nu
                 if (mergedMes.isFile()) {
 
                     // 如果上传的是文件
-                    log(`开始上传${mergedPath}下的文件`);
+                    log(`开始准备上传${mergedPath}下的文件`);
                     put(mergedPath, config);
                 } else if (mergedMes.isDirectory()) {
 
                     // 如果上传的是文件夹
-                    log(`开始上传${mergedPath}下的文件夹`);
+                    log(`开始准备上传${mergedPath}下的文件夹`);
                     put(mergedPath, config);
                 }
                 return true;
             }) 
         };
-
-    config.publishedPath.forEach (pathItem => {
-        batchHandlePath.push(handlePath(pathItem));
-    })
-
-
-    Promise.all(batchHandlePath).then(() => {
+    
+    handlePath(config.publishedPath).then(() => {
         if (eventBus) {
             eventBus.emit('uploadSuccess');
         }

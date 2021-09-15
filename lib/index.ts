@@ -4,9 +4,7 @@ import tFile from './t_file';
 
 
 // 使用命令行
-if (config.useConfig) {
-    handleFileUpload (config);
-}
+handleFileUpload (config);
 
 export default tFile;
 

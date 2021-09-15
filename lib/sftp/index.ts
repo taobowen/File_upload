@@ -2,37 +2,46 @@ import log from '../log/index';
 let Client = require('ssh2-sftp-client');
 
 export default async function put (localPath: String, config: FileConfig){
-    let sftp = new Client(),
-        {host, port, username, password} = config.connectServer,
-        maxPutNum = config.retryTimes ? config.retryTimes : 1,
-        retryTime = 1,
-        isEnd = false;
-
     let sftpPut = async () => {
         if (isEnd) {
             return;
         }
-        sftp.connect({
-            host,
-            port,
-            username,
-            password
-        }).then(() => { 
-            sftp.put(localPath, config.remotePath);
-        }).then(() => {
-            log("上传完成");
-            isEnd = true;
-        }).catch((err) => {
-            if (retryTime <= maxPutNum) {
-                log(`开始第${retryTime}次重试...`);
-                retryTime ++;
+        return sftp.uploadDir(localPath, config.remotePath).then(() => {
+            return '上传成功';
+        }, (err) => {
+            if (currentRetryTime <= retryTimes) {
+                log(`开始第${currentRetryTime}次重试...`);
+                currentRetryTime ++;
                 sftpPut();
             } else {
+                log('上传失败');
                 log(err);
                 isEnd = true;
             }
         });
     }
 
-    await sftpPut();
+    let sftp = new Client(),
+        { host, port, username, password } = config.connectServer,
+        retryTimes = config.retryTimes ? config.retryTimes : 1,
+        currentRetryTime = 1,
+        isEnd = false;
+
+    log('准备建立链接')
+    sftp.connect({
+        host,
+        port,
+        username,
+        password
+    }).then(() => { 
+        console.log('sftp链接成功');
+        return sftpPut();
+    }, (err) => {
+        log('链接失败')
+        log(err);
+    }).then((res) => {
+        log(res);
+        log("上传结束");
+        isEnd = true;
+    })
 }
